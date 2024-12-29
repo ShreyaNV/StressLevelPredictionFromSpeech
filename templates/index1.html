@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your description">
+    <meta name="author" content="Your name">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="static/css/swiper.css" rel="stylesheet">
+	<link href="static/css/magnific-popup.css" rel="stylesheet">
+	<link href="static/css/styles.css" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="static/images/favicon.png">
+</head>
+
+<bodydata-spy="scroll" data-target=".fixed-top">
+    
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+      <div class="container">
+          
+          <!-- Text Logo - Use this if you don't have a graphic logo -->
+          <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Lomar</a> -->
+
+          <!-- Image Logo -->
+
+          <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a class="nav-link page-scroll" href="/index">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  
+                  <li class="nav-item">
+                      <a class="nav-link page-scroll" href="/signout">Signout</a>
+                  </li>
+                  
+              </ul>
+          </div> <!-- end of navbar-collapse -->
+      </div> <!-- end of container -->
+  </nav> <!-- end of navbar -->
+  <!-- end of navigation -->
+   <!-- Header -->
+   <header class="ex-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 offset-xl-1">
+                    <h1 class="single-line">Stress Level Prediction From Speech</h1>
+                    <style>
+                        .single-line {
+                            font-size: 3rem;
+                            line-height: 3.5rem;
+                            letter-spacing: -0.7px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            width: 900px;
+                            height: 130px;
+                            margin-top: 90px;
+                        }
+                    </style>
+                    
+                </div> <!-- end of col -->
+               
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+    <div class="ex-basic-1 pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10 offset-xl-1">
+                    <div id="speechContainer">
+                        <h1>Upload new File</h1>
+                        <form method="post" action="/predict1" enctype="multipart/form-data">
+                            <input type="file" name="file" />
+                            <br><br><br>
+                            <input type="submit" value="Submit" />
+                        </form>
+                        <br><br>
+                        {% if transcript != "" %}
+                        <div id="speechTranscriptContainer">
+                            <h1>Transcript</h1>
+                            <p id="speechText">{{ transcript }}</p>
+                        </div>
+                        {% endif %}
+                        <br>
+                        <br>
+                                <p id="message" style="text-align:center;font-size: xx-large;color: black;"><strong>PREDICTION  </strong></p>
+                    
+                                {% if prediction == 0%}
+                                <h2 style="color:blue; text-align:center">NETURAL/NON STRESSED SPEECH</h2>
+                                <br>
+                                <h2>Tips to Avoid Stress:</h2><br>
+                                <dl>
+                                <dt>
+                                    Take care of yourself : Avoid drugs and alcohol as they can add to stress. Eat a well-balanced diet, get enough sleep, and exercise on a regular basis.
+                                </dt>
+                                <dt>
+                                    Engage in self-relaxation : Try muscle relaxation, breathing or meditation exercises, prayer, yoga, or swimming to reduce stress. Spend time with nature or listen to quiet music.
+                                </dt>
+                                <dt>
+                                    Take breaks when needed : Especially at work, taking breaks can help you re-organize and re-energize your thoughts and focus. 
+                                </dt>
+                                
+                                </dl>
+                                <br>
+                                
+                                {% elif prediction == 1%}
+                                <h2 style="color: rgb(239, 83, 72); text-align:center" > LOW STRESS SPEECH</h2>
+                                <br>
+                                <br>
+                                <h3>URL Link for Movie Recommendation: <a href="http://www.imdb.com/search/title?genres=family&title_type=feature&sort=moviemeter, asc">CLICK HERE</a></h3>
+                                <br>
+                                <br>
+                                <h3>URL Link for Song Recommendation: <a href="https://www.youtube.com/watch?v=lFcSrYw-ARY">CLICK HERE</a></h3>
+                                <br>
+                                <br>
+                                <h3>Games Recommendation</h3>
+                                <br>
+                                <dl>
+                                <dt> 1. Bubble Wrap </dt><br> 
+                                <dt> 2. Color Break </dt><br>
+                                <dt> 3. Personal Zen </dt><br>
+                                <dt> 4. Paper Toss </dt><br>
+                                <dt> 5. Relaxing Puzzler </dt><br>
+                                <dt> 6. Candy Crush </dt><br>
+                                <dt> 7. Bejeweled </dt><br>
+                                <dt> 8. Wordscapes </dt><br>
+                                <dt> 9. Super Mario Run </dt><br>
+                                <dt> 10. Pigment </dt><br>
+                            </dl>
+                                <br>
+                                <h3>Books Recommendation</h3>
+                                <br>
+                                <h2>1. The secret by Rhonda Byrne</h2><br><img style="width: 50%;" src="static/books/main-qimg-38aaed6ce831d644a1eecc4ef8b79ed2.webp">  
+                                <br>
+                                <h2>2. Your Erroneous Zones by Wayne Dyer</h2><br><img style="width: 50%;" height="50%" src="static/books/main-qimg-40cd42f34879f57201b522e0120e80f8.webp">  
+                                <br>
+
+                                <h3>Medications</h3>
+                                <br>
+                                <h2>General Medicine: </h2> <br>
+                                <h4>1. Diazepam will take effect within 15–40 minutes and last 5–8 hours.</h4><br>
+                                <h4>2. Xanax will take effect within 20–40 minutes and last 5–8 hours.</h4><br>
+                                <h2>Homeopathy Medicine: </h2> <br>
+                                <h4>1. Aconitum napellus.</h4><br>
+                                <h4>2. Argentum nitricum.</h4><br>
+                                <h4>3. Arsenicum album.</h4><br>
+                                <h4>4. Lycopodium.</h4><br>
+                                <h2>Ayurveda Medicine: </h2> <br>
+                                <h4>1. Saraswatharistam A Naturally Fermented Stress Relieving.</h4><br>
+                                <h4>2. Manasamithra Vatakam Gulika Tablets.</h4><br>
+                                <h4>3. Aswagandharishtam.</h4><br>
+                                <h4>4. HealTone 225ml.</h4><br>
+                                <br><br><br>
+                                                
+                                <br>
+
+                                {% elif prediction == 2%}
+                                <h2 style="color:rgb(226, 27, 12) ; text-align:center" >HIGH STRESS SPEECH</h2>
+                                <br>
+                                <br>
+                                <h3>URL Link for Movie Recommendation: <a href="http://www.imdb.com/search/title?genres=family&title_type=feature&sort=moviemeter, asc">CLICK HERE</a></h3>
+                                <br>
+                                <br>
+                                <h3>URL Link for Song Recommendation: <a href="https://www.youtube.com/watch?v=lFcSrYw-ARY">CLICK HERE</a></h3>
+                                <br>
+                                <br>
+                                <h3>Games Recommendation</h3>
+                                <br>
+                                <dl>
+                                <dt> 1. Bubble Wrap </dt><br> 
+                                <dt> 2. Color Break </dt><br>
+                                <dt> 3. Personal Zen </dt><br>
+                                <dt> 4. Paper Toss </dt><br>
+                                <dt> 5. Relaxing Puzzler </dt><br>
+                                <dt> 6. Candy Crush </dt><br>
+                                <dt> 7. Bejeweled </dt><br>
+                                <dt> 8. Wordscapes </dt><br>
+                                <dt> 9. Super Mario Run </dt><br>
+                                <dt> 10. Pigment </dt><br>
+                            </dl>
+                                <br>
+                                <h3>Books Recommendation</h3>
+                                <br>
+                                <h2>1. The secret by Rhonda Byrne</h2><br><img style="width: 50%;" src="static/books/main-qimg-38aaed6ce831d644a1eecc4ef8b79ed2.webp">  
+                                <br>
+                                <h2>2. Your Erroneous Zones by Wayne Dyer</h2><br><img style="width: 50%;" height="50%" src="static/books/main-qimg-40cd42f34879f57201b522e0120e80f8.webp">  
+                                <br>
+
+                                <h3>Medications</h3>
+                                <br>
+                                <h2>General Medicine: </h2> <br>
+                                <h4>1. Diazepam will take effect within 15–40 minutes and last 5–8 hours.</h4><br>
+                                <h4>2. Xanax will take effect within 20–40 minutes and last 5–8 hours.</h4><br>
+                                <h2>Homeopathy Medicine: </h2> <br>
+                                <h4>1. Aconitum napellus.</h4><br>
+                                <h4>2. Argentum nitricum.</h4><br>
+                                <h4>3. Arsenicum album.</h4><br>
+                                <h4>4. Lycopodium.</h4><br>
+                                <h2>Ayurveda Medicine: </h2> <br>
+                                <h4>1. Saraswatharistam A Naturally Fermented Stress Relieving.</h4><br>
+                                <h4>2. Manasamithra Vatakam Gulika Tablets.</h4><br>
+                                <h4>3. Aswagandharishtam.</h4><br>
+                                <h4>4. HealTone 225ml.</h4><br>
+                                <br><br><br>
+                                                
+                                <br>
+                                
+                                {% endif %}
+                    </div>
+
+                    <br><br><br><br><br>
+
+                   
+                  
+    
+                  </body>
+                  </html>
+                  
+                  
